@@ -9,7 +9,7 @@ using Dapper;
 namespace Bookify.Application.Apartments.SearchApartments;
 
 internal sealed class SearchApartmentsQueryHandler
-    : IQueryHandler<SearchApartmentsQuery, IReadOnlyList<ApartmentResponse>>
+    : IQueryHandler<SearchApartmentsQuery, IReadOnlyList<SearchApartmentResponse>>
 {
     private static readonly int[] ActiveBookingStatuses =
     {
@@ -27,12 +27,12 @@ internal sealed class SearchApartmentsQueryHandler
         _validator = validator;
     }
 
-    public async Task<Result<IReadOnlyList<ApartmentResponse>>> Handle(SearchApartmentsQuery request, CancellationToken cancellationToken)
+    public async Task<Result<IReadOnlyList<SearchApartmentResponse>>> Handle(SearchApartmentsQuery request, CancellationToken cancellationToken)
     {
         FluentValidation.Results.ValidationResult validationResult = await _validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
         {
-            return Result.Failure<IReadOnlyList<ApartmentResponse>>(
+            return Result.Failure<IReadOnlyList<SearchApartmentResponse>>(
                ApartmentErrors.Invalid);
         }
 
@@ -69,18 +69,18 @@ internal sealed class SearchApartmentsQueryHandler
         FETCH NEXT @PageSize ROWS ONLY
         """;
 
-        var apartmentDictionary = new Dictionary<Guid, ApartmentResponse>();
+        var apartmentDictionary = new Dictionary<Guid, SearchApartmentResponse>();
 
         int offset = (request.Page - 1) * request.PageSize;
         int pageSize = request.PageSize;
 
-        await connection.QueryAsync<ApartmentResponse, AddressResponse, int[], int?, ApartmentResponse>(
+        await connection.QueryAsync<SearchApartmentResponse, AddressResponse, int[], int?, SearchApartmentResponse>(
            sql,
            (apartment, address, amenities, rating) =>
            {
-               if (!apartmentDictionary.TryGetValue(apartment.Id, out ApartmentResponse? apartmentEntry))
+               if (!apartmentDictionary.TryGetValue(apartment.Id, out SearchApartmentResponse? apartmentEntry))
                {
-                   apartmentEntry = new ApartmentResponse
+                   apartmentEntry = new SearchApartmentResponse
                    {
                        Id = apartment.Id,
                        Name = apartment.Name,

@@ -35,7 +35,7 @@ public sealed class ApartmentsController : ControllerBase
     {
         var query = new SearchApartmentsQuery(startDate, endDate, page, pageSize);
 
-        Result<IReadOnlyList<ApartmentResponse>> result = await _sender.Send(query, cancellationToken);
+        Result<IReadOnlyList<SearchApartmentResponse>> result = await _sender.Send(query, cancellationToken);
 
         if (result.IsFailure)
         {

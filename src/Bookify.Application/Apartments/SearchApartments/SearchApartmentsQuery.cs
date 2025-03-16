@@ -6,7 +6,7 @@ public sealed record SearchApartmentsQuery(
     DateOnly StartDate,
     DateOnly EndDate,
     int Page,
-    int PageSize) : ICachedQuery<IReadOnlyList<ApartmentResponse>>
+    int PageSize) : ICachedQuery<IReadOnlyList<SearchApartmentResponse>>
 {
     public string CacheKey => $"apartments-{StartDate}-{EndDate}-{Page}-{PageSize}";
 
