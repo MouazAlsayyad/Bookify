@@ -1,0 +1,125 @@
+# Ignore build outputs
+[Bb]in/
+[Oo]bj/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userprefs
+
+# Ignore NuGet packages directory
+packages/
+
+# Ignore local NuGet cache
+.nuget/
+
+# Ignore Visual Studio temporary files
+*.vs/
+*.vscode/
+
+# Ignore ReSharper files
+_ReSharper.*
+*.ReSharper
+*.ReSharper.user
+
+# Ignore MSTest test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Ignore NCrunch files
+*.ncrunch*
+.*crunch*.local.xml
+
+# Ignore Azure Functions local settings
+local.settings.json
+
+# Ignore Rider files
+.idea/
+*.sln.iml
+
+# Ignore macOS files
+.DS_Store
+
+# Ignore Unity files (if applicable)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Ignore Cake build artifacts
+tools/
+!tools/packages.config
+
+# Ignore Fody Weavers
+_ReSharper.Caches/
+*.DotSettings
+
+# Ignore SQL Server files
+*.mdf
+*.ldf
+
+# Ignore Node.js files (if applicable)
+node_modules/
+npm-debug.log
+
+# Ignore Python files (if applicable)
+__pycache__/
+*.pyc
+
+# Ignore JetBrains Rider files
+.idea/
+*.sln.iml
+
+# Ignore Visual Studio Code files
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Ignore Rider files
+.idea/
+*.sln.iml
+
+# Ignore Unity files (if applicable)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Ignore Cake build artifacts
+tools/
+!tools/packages.config
+
+# Ignore Fody Weavers
+_ReSharper.Caches/
+*.DotSettings
+
+# Ignore SQL Server files
+*.mdf
+*.ldf
+
+# Ignore Node.js files (if applicable)
+node_modules/
+npm-debug.log
+
+# Ignore Python files (if applicable)
+__pycache__/
+*.pyc
+
+# Ignore JetBrains Rider files
+.idea/
+*.sln.iml
+
+# Ignore Visual Studio Code files
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
