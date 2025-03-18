@@ -46,6 +46,22 @@ public sealed class Apartment : Entity
             amenities
             );
     }
+
+    public void Update(
+       Name name,
+       Description description,
+       Address address,
+       Money price,
+       Money cleaningFee,
+       List<Amenity> amenities)
+    {
+        Name = name;
+        Description = description;
+        Address = address;
+        Price = price;
+        CleaningFee = cleaningFee;
+        Amenities = amenities;
+    }
     public Name Name { get; private set; }
 
     public Description Description { get; private set; }
