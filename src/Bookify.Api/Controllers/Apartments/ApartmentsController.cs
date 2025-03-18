@@ -3,6 +3,7 @@ using Bookify.Application.Apartments;
 using Bookify.Application.Apartments.CreateApartment;
 using Bookify.Application.Apartments.GetApartment;
 using Bookify.Application.Apartments.SearchApartments;
+using Bookify.Application.Apartments.UpdateApartment;
 using Bookify.Domain.Abstractions;
 using Bookify.Domain.Apartments;
 using Bookify.Domain.Shared;
@@ -83,5 +84,34 @@ public sealed class ApartmentsController : ControllerBase
         }
 
         return CreatedAtAction(nameof(GetApartment), new { id = result.Value }, result.Value);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateApartment(Guid id, ApartmentRequest request, CancellationToken cancellationToken)
+    {
+        var command = new UpdateApartmentCommand(
+            Id: id,
+            Name: new Name(request.Name),
+            Description: new Description(request.Description),
+            Address: new Address(
+                request.Address.Country,
+                request.Address.State,
+                request.Address.ZipCode,
+                request.Address.City,
+                request.Address.Street
+            ),
+            Price: new Money(request.PriceAmount, Currency.FromCode(request.Currency)),
+            CleaningFee: new Money(request.CleaningFeeAmount, Currency.FromCode(request.Currency)),
+            Amenities: request.Amenities
+        );
+
+        Result<Guid> result = await _sender.Send(command, cancellationToken);
+
+        if (result.IsFailure)
+        {
+            return BadRequest(result.Error);
+        }
+
+        return NoContent();
     }
 }
